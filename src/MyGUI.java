@@ -138,7 +138,7 @@ public class MyGUI {
 		if( s != null && s.length() > 0 ) col = Integer.parseInt(s);
 				
 		// Set minimum size of the game window
-		mainFrame.setMinimumSize(new Dimension(row*40 + 100, col*40 + 100) );
+		mainFrame.setMinimumSize(new Dimension(row*60, col*60) );
 		
 	}
 	

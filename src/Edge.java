@@ -90,28 +90,34 @@ public class Edge {
 		MyGUI.drawGrid();
 		MyGUI.sleep();
 		
-		int flag1 = this.p1.checkPoint(pointsToCheck,activePoints,complete,incomplete);
-		int flag2 = this.p2.checkPoint(pointsToCheck,activePoints,complete,incomplete);
+		// do stuff to scalars and then check if loop is already formed 
+		if(this.p1.numActive()==2 && activePoints.contains(this.p1)) activePoints.remove(this.p1);
+		if(this.p2.numActive()==2 && activePoints.contains(this.p2)) activePoints.remove(this.p2);
+		if(this.t1 != null && this.t1.data == this.t1.numActive()) {
+			complete.add(this.t1);
+			incomplete.remove(this.t1);
+		}
+		if(this.t2 != null && this.t2.data == this.t2.numActive()) {
+			complete.add(this.t2);
+			incomplete.remove(this.t2);
+		}
+		
+		if(this.p1.numActive()==2 && this.p2.numActive()==2) 
+			this.checkLoop(incomplete, activePoints);
+		
+		this.p1.checkPoint(pointsToCheck,activePoints,complete,incomplete);
+		this.p2.checkPoint(pointsToCheck,activePoints,complete,incomplete);
 		
 		if( this.t1 != null && this.t1.data == -1 && this.t1.numUndecided() == 1 ) this.t1.checkAndCross(pointsToCheck,activePoints,complete,incomplete);
 		if( this.t2 != null && this.t2.data == -1 && this.t2.numUndecided() == 1 ) this.t2.checkAndCross(pointsToCheck,activePoints,complete,incomplete);
 		
-		if( this.t1 != null && this.t1.data == this.t1.numActive() ) {
-			complete.add(t1);
-			incomplete.remove(t1);
+		if( this.t1 != null && this.t1.data == this.t1.numActive() )
 			this.t1.crossOutUndecided(pointsToCheck,activePoints,complete,incomplete);
-		}
-		if( this.t2 != null && this.t2.data == this.t2.numActive() ) {
-			complete.add(t2);
-			incomplete.remove(t2);
+		if( this.t2 != null && this.t2.data == this.t2.numActive() )
 			this.t2.crossOutUndecided(pointsToCheck,activePoints,complete,incomplete);
-		}
 		
 		if( this.t1 != null && this.t1.data - this.t1.numActive() == this.t1.numUndecided() ) this.t1.activateUndecided(pointsToCheck,activePoints,complete,incomplete);
 		if( this.t2 != null && this.t2.data - this.t2.numActive() == this.t2.numUndecided() ) this.t2.activateUndecided(pointsToCheck,activePoints,complete,incomplete);
-		
-		if(flag1==2 && flag2==2) 
-			this.checkLoop(incomplete, activePoints);
 		
 	}
 
@@ -143,7 +149,7 @@ public class Edge {
 	}
 	
 	private void checkLoop(ArrayList<Tile> incomplete, ArrayList<Point> activePoints) {
-		if(incomplete.isEmpty()) return;
+		if(incomplete.isEmpty() && activePoints.isEmpty()) return;
 		Point nextPoint = this.p2;
 		Edge currentEdge = this;
 		

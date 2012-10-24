@@ -315,7 +315,6 @@ public class Grid {
 			} catch (NullPointerException e2) {
 				MyGUI.grid = gridNode;
 				MyGUI.drawGrid();
-				MyGUI.sleep();
 			}
 			
 			if(e.p1.row == gridNode.row_size)
@@ -369,6 +368,7 @@ public class Grid {
 		if(this.activePoints.isEmpty() && this.incomplete.isEmpty())
 		{
 			System.out.println("Found sol");
+			MyGUI.grid = this;
 			this.finish();
 			throw new ArrayIndexOutOfBoundsException();
 		}
@@ -456,7 +456,6 @@ public class Grid {
 				} catch (NullPointerException e2) {
 					MyGUI.grid = this;
 					MyGUI.drawGrid();
-					MyGUI.sleep();
 				}
 
 				count++;
@@ -478,7 +477,6 @@ public class Grid {
 				} catch (NullPointerException e2) {
 					MyGUI.grid = this;
 					MyGUI.drawGrid();
-					MyGUI.sleep();
 				}
 				
 				count++;

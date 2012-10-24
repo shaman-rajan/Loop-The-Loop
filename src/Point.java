@@ -26,6 +26,9 @@ public class Point {
 		return this.numCount(-1);
 	}
 	
+	/*
+	 * Counts nummber of edges with "val" as state
+	 */
 	private int numCount(int val) {
 		int count = 0;
 		if(this.top_Edge!=null && this.top_Edge.state==val) count++;

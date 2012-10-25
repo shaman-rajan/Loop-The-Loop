@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 import java.util.Stack;
 
@@ -50,10 +51,10 @@ public class Grid {
 		this.stackSearch();
 		//After this stack is empty so refill it with elements from the list
 		
-		MyGUI.solveThread.suspend();
+		MyGUI.sleepTime = 300;
 		
-		for(Point p : this.activePoints)
-			this.pointsToCheck.add(p);
+		Collections.sort(activePoints);
+		pointsToCheck.addAll(activePoints);
 		
 		if(!activePoints.isEmpty()) this.backTrack(this);
 		else this.addAndBacktrack();
@@ -332,6 +333,7 @@ public class Grid {
 			gridChild = new Grid(gridNode.row_size, gridNode.col_size);
 			gridChild.CopyAll(gridNode);
 			
+			Collections.sort(gridChild.activePoints);
 			gridChild.pointsToCheck.addAll(gridChild.activePoints);
 			int flag = 0;
 			while(!gridChild.pointsToCheck.isEmpty()) {

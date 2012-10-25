@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Stack;
-public class Point {
+public class Point implements Comparable<Point> {
 
 	public int row;
 	public int col;
@@ -85,6 +85,13 @@ public class Point {
 		if(this.right_Edge != null && this.right_Edge.state==1) active.add(this.right_Edge);
 		if(this.left_Edge != null && this.left_Edge.state==1) active.add(this.left_Edge);
 		return active;
+	}
+
+	@Override
+	public int compareTo(Point p) {
+		if(this.numActive() > p.numUndecided()) return 1;
+		if(this.numActive() < p.numUndecided()) return -1;
+		return 0;
 	}
 
 }

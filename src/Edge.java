@@ -163,8 +163,7 @@ public class Edge {
 	}
 	
 	public String toString() {
-		String s = this.p1.toString() + " to " + this.p2.toString() + " " + this.state;
-		return s;
+		return this.p1.toString() + " to " + this.p2.toString() + " " + this.state;
 	}
 	
 }

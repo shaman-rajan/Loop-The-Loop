@@ -60,7 +60,7 @@ public class Grid {
 		
 		System.out.println(this.complete);
 		System.out.println(incomplete);
-		return;
+		
 	}
 
 	private void check0() {
@@ -287,8 +287,6 @@ public class Grid {
 
 		if (changed != 0)
 			stackSearch();
-
-		return;
 	}
 	
 	
@@ -346,7 +344,6 @@ public class Grid {
 			if(flag==0) break;
 		}
 		
-		return;
 	}
 	
 	//to check if the node is a valid node or not

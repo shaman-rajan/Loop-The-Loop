@@ -38,7 +38,7 @@ public class Point {
 		return count;
 	}
 	
-	public int checkPoint(Stack<Point> pointsToCheck,ArrayList<Point> activePoints,ArrayList<Tile> complete,ArrayList<Tile> incomplete) {
+	public void checkPoint(Stack<Point> pointsToCheck,ArrayList<Point> activePoints,ArrayList<Tile> complete,ArrayList<Tile> incomplete) {
 		if(this.numActive()==2) {
 			if(pointsToCheck.contains(this)) pointsToCheck.remove(this);
 			if(activePoints.contains(this)) activePoints.remove(this);
@@ -46,19 +46,15 @@ public class Point {
 			if(this.bot_Edge!=null && this.bot_Edge.state!=1) this.bot_Edge.crossOut(pointsToCheck,activePoints,complete,incomplete);
 			if(this.left_Edge!=null && this.left_Edge.state!=1) this.left_Edge.crossOut(pointsToCheck,activePoints,complete,incomplete);
 			if(this.right_Edge!=null && this.right_Edge.state!=1) this.right_Edge.crossOut(pointsToCheck,activePoints,complete,incomplete);
-			return 2;
 		} else if(this.numActive()==1) {
 			if(!pointsToCheck.contains(this)) pointsToCheck.push(this);
 			if(!activePoints.contains(this)) activePoints.add(this);
-			return 1;
 		} else if(this.numActive()==0 && this.numUndecided()==1) {
 			if(this.top_Edge!=null ) this.top_Edge.crossOut(pointsToCheck,activePoints,complete,incomplete);
 			if(this.bot_Edge!=null ) this.bot_Edge.crossOut(pointsToCheck,activePoints,complete,incomplete);
 			if(this.left_Edge!=null ) this.left_Edge.crossOut(pointsToCheck,activePoints,complete,incomplete);
 			if(this.right_Edge!=null ) this.right_Edge.crossOut(pointsToCheck,activePoints,complete,incomplete);
-			return 0;
 		}
-		return 0;
 	}
 	
 	public void activateUndecided(Stack<Point> pointsToCheck,ArrayList<Point> activePoints,ArrayList<Tile> complete,ArrayList<Tile> incomplete) {

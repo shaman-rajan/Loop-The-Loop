@@ -51,8 +51,6 @@ public class Grid {
 		this.stackSearch();
 		//After this stack is empty so refill it with elements from the list
 		
-		MyGUI.sleepTime = 300;
-		
 		Collections.sort(activePoints);
 		pointsToCheck.addAll(activePoints);
 		
@@ -310,6 +308,8 @@ public class Grid {
 			
 			try {
 				e.activate(gridChild.pointsToCheck, gridChild.activePoints, gridChild.complete, gridChild.incomplete);
+				gridChild.stackSearch();
+				gridChild.pointsToCheck.addAll(gridChild.activePoints);
 				backTrack(gridChild);
 			} catch (NullPointerException e2) {
 				MyGUI.grid = gridNode;

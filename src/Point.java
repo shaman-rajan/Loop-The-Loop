@@ -89,8 +89,8 @@ public class Point implements Comparable<Point> {
 
 	@Override
 	public int compareTo(Point p) {
-		if(this.numActive() > p.numUndecided()) return 1;
-		if(this.numActive() < p.numUndecided()) return -1;
+		if(this.numUndecided() > p.numUndecided()) return 1;
+		if(this.numUndecided() < p.numUndecided()) return -1;
 		return 0;
 	}
 

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Stack;
-public class Point implements Comparable<Point> {
+public class Point {
 
 	public int row;
 	public int col;
@@ -87,6 +87,7 @@ public class Point implements Comparable<Point> {
 		return active;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public int compareTo(Point p) {
 		if(this.numUndecided() > p.numUndecided()) return 1;
@@ -94,4 +95,6 @@ public class Point implements Comparable<Point> {
 		return 0;
 	}
 
+=======
+>>>>>>> parent of 7171294... Added heuristic that sorts activepoints according to undecided edges before choosing an edge in backtrack
 }

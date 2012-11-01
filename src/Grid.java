@@ -54,6 +54,9 @@ public class Grid {
 		Collections.sort(activePoints);
 		pointsToCheck.addAll(activePoints);
 		
+		for(Point p : this.activePoints)
+			this.pointsToCheck.add(p);
+		
 		if(!activePoints.isEmpty()) this.backTrack(this);
 		else this.addAndBacktrack();
 		
@@ -333,7 +336,6 @@ public class Grid {
 			gridChild = new Grid(gridNode.row_size, gridNode.col_size);
 			gridChild.CopyAll(gridNode);
 			
-			Collections.sort(gridChild.activePoints);
 			gridChild.pointsToCheck.addAll(gridChild.activePoints);
 			int flag = 0;
 			while(!gridChild.pointsToCheck.isEmpty()) {

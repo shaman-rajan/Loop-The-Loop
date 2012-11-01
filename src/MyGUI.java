@@ -32,7 +32,7 @@ public class MyGUI {
 	static Thread solveThread;
 	
 	private static Border defaultBorder = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
-	static int sleepTime = 1;
+	private static int sleepTime = 1;
 	
 	public static Grid createAndShowGUI() {
 		

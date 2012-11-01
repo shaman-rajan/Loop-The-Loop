@@ -54,9 +54,6 @@ public class Grid {
 		Collections.sort(activePoints);
 		pointsToCheck.addAll(activePoints);
 		
-		for(Point p : this.activePoints)
-			this.pointsToCheck.add(p);
-		
 		if(!activePoints.isEmpty()) this.backTrack(this);
 		else this.addAndBacktrack();
 		
